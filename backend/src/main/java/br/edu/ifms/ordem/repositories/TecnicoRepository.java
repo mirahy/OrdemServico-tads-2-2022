@@ -7,5 +7,5 @@ import br.edu.ifms.ordem.entities.Tecnico;
 
 @Repository
 public interface TecnicoRepository extends JpaRepository<Tecnico, Long> {
-
+	
 }
