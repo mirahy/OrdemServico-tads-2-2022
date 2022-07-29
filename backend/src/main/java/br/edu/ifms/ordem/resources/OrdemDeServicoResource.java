@@ -1,11 +1,9 @@
 package br.edu.ifms.ordem.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,49 +12,48 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.edu.ifms.ordem.dto.TecnicoDTO;
-import br.edu.ifms.ordem.services.TecnicoService;
+import br.edu.ifms.ordem.dto.OrdemDeServicoDTO;
+import br.edu.ifms.ordem.services.OrdemDeServicoService;
 
 @RestController
-@RequestMapping(value = "/tecnicos")
-public class TecnicoResource {
+@RequestMapping(value = "/servicos")
+public class OrdemDeServicoResource {
 	
 	@Autowired
-	private TecnicoService service;
+	private OrdemDeServicoService service;
 
-	@GetMapping
-	public ResponseEntity<Page<TecnicoDTO>> findAllPaged(
+	/*@GetMapping
+	public ResponseEntity<Page<OrdemDeServicoDTO>> findAllPaged(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "10") Integer linesPerPage,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
-			@RequestParam(value = "orderBy", defaultValue = "nome") String orderBy
+			@RequestParam(value = "orderBy", defaultValue = "dataCadastro") String orderBy
 		){
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, 
 				Direction.valueOf(direction), orderBy);
 		
-		Page<TecnicoDTO> list = service.findAllPaged(pageRequest);
+		Page<OrdemDeServicoDTO> list = service.findAllPaged(pageRequest);
 		return ResponseEntity.ok().body(list);
+	}*/
+	
+	@GetMapping
+	public ResponseEntity<List<OrdemDeServicoDTO>> findAll(){
+		List<OrdemDeServicoDTO> lista = service.findAll();
+		return ResponseEntity.ok().body(lista);
 	}
 	
-	//@GetMapping
-	//public ResponseEntity<List<TecnicoDTO>> findAll(){
-	//	List<TecnicoDTO> list = service.findAll();
-	//	return ResponseEntity.ok().body(list);
-	//}
-	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<TecnicoDTO> findById(@PathVariable Long id){
-		TecnicoDTO dto = service.findById(id);
+	public ResponseEntity<OrdemDeServicoDTO> findById(@PathVariable Long id){
+		OrdemDeServicoDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
 	
 	@PostMapping
-	public ResponseEntity<TecnicoDTO> insert(@RequestBody TecnicoDTO dto){
+	public ResponseEntity<OrdemDeServicoDTO> insert(@RequestBody OrdemDeServicoDTO dto){
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 											 .path("/{id}")
@@ -65,7 +62,7 @@ public class TecnicoResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<TecnicoDTO> update(@PathVariable Long id, @RequestBody TecnicoDTO dto){
+	public ResponseEntity<OrdemDeServicoDTO> update(@PathVariable Long id, @RequestBody OrdemDeServicoDTO dto){
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}

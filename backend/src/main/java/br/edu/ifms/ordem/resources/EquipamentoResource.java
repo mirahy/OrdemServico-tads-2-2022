@@ -18,45 +18,39 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.edu.ifms.ordem.dto.TecnicoDTO;
-import br.edu.ifms.ordem.services.TecnicoService;
+import br.edu.ifms.ordem.dto.EquipamentoDTO;
+import br.edu.ifms.ordem.services.EquipamentoService;
 
 @RestController
-@RequestMapping(value = "/tecnicos")
-public class TecnicoResource {
+@RequestMapping(value = "/equipamentos")
+public class EquipamentoResource {
 	
 	@Autowired
-	private TecnicoService service;
+	private EquipamentoService service;
 
 	@GetMapping
-	public ResponseEntity<Page<TecnicoDTO>> findAllPaged(
+	public ResponseEntity<Page<EquipamentoDTO>> findAllPaged(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "10") Integer linesPerPage,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
-			@RequestParam(value = "orderBy", defaultValue = "nome") String orderBy
+			@RequestParam(value = "orderBy", defaultValue = "setor") String orderBy
 		){
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, 
 				Direction.valueOf(direction), orderBy);
 		
-		Page<TecnicoDTO> list = service.findAllPaged(pageRequest);
+		Page<EquipamentoDTO> list = service.findAllPaged(pageRequest);
 		return ResponseEntity.ok().body(list);
 	}
 	
-	//@GetMapping
-	//public ResponseEntity<List<TecnicoDTO>> findAll(){
-	//	List<TecnicoDTO> list = service.findAll();
-	//	return ResponseEntity.ok().body(list);
-	//}
-	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<TecnicoDTO> findById(@PathVariable Long id){
-		TecnicoDTO dto = service.findById(id);
+	public ResponseEntity<EquipamentoDTO> findById(@PathVariable Long id){
+		EquipamentoDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
 	
 	@PostMapping
-	public ResponseEntity<TecnicoDTO> insert(@RequestBody TecnicoDTO dto){
+	public ResponseEntity<EquipamentoDTO> insert(@RequestBody EquipamentoDTO dto){
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 											 .path("/{id}")
@@ -65,7 +59,7 @@ public class TecnicoResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<TecnicoDTO> update(@PathVariable Long id, @RequestBody TecnicoDTO dto){
+	public ResponseEntity<EquipamentoDTO> update(@PathVariable Long id, @RequestBody EquipamentoDTO dto){
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}

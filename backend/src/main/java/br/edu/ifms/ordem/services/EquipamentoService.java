@@ -14,66 +14,57 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.edu.ifms.ordem.dto.TecnicoDTO;
-import br.edu.ifms.ordem.entities.Tecnico;
-import br.edu.ifms.ordem.repositories.TecnicoRepository;
+import br.edu.ifms.ordem.dto.EquipamentoDTO;
+import br.edu.ifms.ordem.entities.Equipamento;
+import br.edu.ifms.ordem.repositories.EquipamentoRepository;
 import br.edu.ifms.ordem.services.exceptions.DataBaseException;
 import br.edu.ifms.ordem.services.exceptions.ResourceNotFoundException;
 
 @Service
-public class TecnicoService {
+public class EquipamentoService {
 	
 	@Autowired
-	private TecnicoRepository repository;
+	private EquipamentoRepository repository;
 
 	@Transactional(readOnly = true)
-	public List<TecnicoDTO> findAll(){
-		List<Tecnico> list = repository.findAll();
-//		List<TecnicoDTO> listDto = new ArrayList<>();
-		
-//		for(Tecnico t : list) {
-//			listDto.add(new TecnicoDTO(t));
-//		}
-		
-//		return listDto;
-		return list.stream().map(t -> new TecnicoDTO(t)).collect(Collectors.toList());
+	public List<EquipamentoDTO> findAll(){
+		List<Equipamento> list = repository.findAll();
+		return list.stream().map(t -> new EquipamentoDTO(t)).collect(Collectors.toList());
 	}
 	
 	@Transactional(readOnly = true)
-	public Page<TecnicoDTO> findAllPaged(PageRequest pageRequest) {
-		Page<Tecnico> list = repository.findAll(pageRequest);
-		return list.map(x -> new TecnicoDTO(x));
+	public Page<EquipamentoDTO> findAllPaged(PageRequest pageRequest) {
+		Page<Equipamento> list = repository.findAll(pageRequest);
+		return list.map(x -> new EquipamentoDTO(x));
 	}
 
 	@Transactional(readOnly = true)
-	public TecnicoDTO findById(Long id) {
-		Optional<Tecnico> obj = repository.findById(id);
-		Tecnico entity = obj.orElseThrow(() -> new ResourceNotFoundException(
+	public EquipamentoDTO findById(Long id) {
+		Optional<Equipamento> obj = repository.findById(id);
+		Equipamento entity = obj.orElseThrow(() -> new ResourceNotFoundException(
 				                "A entidade consultada não foi localizada"));
-		return new TecnicoDTO(entity);
+		return new EquipamentoDTO(entity);
 	}
 
 	@Transactional
-	public TecnicoDTO insert(TecnicoDTO dto) {
-		Tecnico entity = new Tecnico();
-		entity.setNome(dto.getNome());
-		entity.setTelefone(dto.getTelefone());
-		entity.setEmail(dto.getEmail());
-		entity.setSenha(dto.getSenha());
+	public EquipamentoDTO insert(EquipamentoDTO dto) {
+		Equipamento entity = new Equipamento();
+		entity.setEquipamento(dto.getEquipamento());
+		entity.setPatrimonio(dto.getPatrimonio());
+		entity.setSetor(dto.getSetor());
 		entity = repository.save(entity);
-		return new TecnicoDTO(entity);
+		return new EquipamentoDTO(entity);
 	}
 
 	@Transactional
-	public TecnicoDTO update(Long id, TecnicoDTO dto) {
+	public EquipamentoDTO update(Long id, EquipamentoDTO dto) {
 		try {
-			Tecnico entity = repository.getById(id);
-			entity.setNome(dto.getNome());
-			entity.setTelefone(dto.getTelefone());
-			entity.setEmail(dto.getEmail());
-			entity.setSenha(dto.getSenha());
+			Equipamento entity = repository.getById(id);
+			entity.setEquipamento(dto.getEquipamento());
+			entity.setPatrimonio(dto.getPatrimonio());
+			entity.setSetor(dto.getSetor());
 			entity = repository.save(entity);
-			return new TecnicoDTO(entity);
+			return new EquipamentoDTO(entity);
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("O recurso com o ID = "+id+" não foi localizado");
 		}
