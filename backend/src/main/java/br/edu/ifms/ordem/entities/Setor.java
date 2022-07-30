@@ -10,30 +10,32 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_tecnico")
-public class Tecnico implements Serializable {
+@Table(name = "tb_setor")
+public class Setor implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String sigla;
 	private String nome;
-	private String telefone;
 	private String email;
-	private String senha;
+	private String telefone;
+	private String coordenador;
 	
-	
-	public Tecnico() {
-		
+	public Setor() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public Tecnico(Long id, String nome, String telefone, String email, String senha) {
+	public Setor(Long id, String sigla, String nome, String email, String telefone, String coordenador) {
 		this.id = id;
+		this.sigla = sigla;
 		this.nome = nome;
-		this.telefone = telefone;
 		this.email = email;
-		this.senha = senha;
+		this.telefone = telefone;
+		this.coordenador = coordenador;
 	}
+	
 
 	public Long getId() {
 		return id;
@@ -41,6 +43,14 @@ public class Tecnico implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getSigla() {
+		return sigla;
+	}
+
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
 	}
 
 	public String getNome() {
@@ -51,14 +61,6 @@ public class Tecnico implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -67,14 +69,21 @@ public class Tecnico implements Serializable {
 		this.email = email;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
-	
+
+	public String getCoordenador() {
+		return coordenador;
+	}
+
+	public void setCoordenador(String coordenador) {
+		this.coordenador = coordenador;
+	}
 
 	@Override
 	public int hashCode() {
@@ -89,8 +98,10 @@ public class Tecnico implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Tecnico other = (Tecnico) obj;
+		Setor other = (Setor) obj;
 		return Objects.equals(id, other.id);
 	}
 	
+	
+
 }

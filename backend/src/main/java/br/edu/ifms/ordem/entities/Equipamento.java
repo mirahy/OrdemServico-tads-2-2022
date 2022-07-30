@@ -19,13 +19,13 @@ public class Equipamento implements Serializable {
 	private Long id;
 	private String equipamento;
 	private String patrimonio;
-	private String setor;
+	private Setor setor;
 	
 	public Equipamento() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Equipamento(Long id, String equipamento, String patrimonio, String setor) {
+	public Equipamento(Long id, String equipamento, String patrimonio, Setor setor) {
 		this.id = id;
 		this.equipamento = equipamento;
 		this.patrimonio = patrimonio;
@@ -56,11 +56,11 @@ public class Equipamento implements Serializable {
 		this.patrimonio = patrimonio;
 	}
 
-	public String getSetor() {
+	public Setor getSetor() {
 		return setor;
 	}
 
-	public void setSetor(String setor) {
+	public void setSetor(Setor setor) {
 		this.setor = setor;
 	}
 

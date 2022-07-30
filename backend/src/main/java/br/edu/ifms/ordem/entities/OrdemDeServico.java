@@ -2,9 +2,7 @@ package br.edu.ifms.ordem.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -44,11 +40,9 @@ public class OrdemDeServico implements Serializable {
 	@JoinColumn(name = "id_tecnico_fk")
 	private Tecnico tecnico;
 	
-	@ManyToMany
-	@JoinTable(name = "tb_equipamento_servico",
-				joinColumns = @JoinColumn(name = "id_ordem"),
-				inverseJoinColumns = @JoinColumn(name = "id_equipamento"))
-	Set<Equipamento> equipamentos = new HashSet<>();
+	@ManyToOne
+	@JoinColumn(name = "id_equipamento_fk")
+	private Equipamento equipamento;
 	
 	
 	public OrdemDeServico() {
@@ -56,7 +50,7 @@ public class OrdemDeServico implements Serializable {
 	}
 
 	public OrdemDeServico(Long id, String descricaoProblema, String descricaoSolucao, Date dataCadastro, Status status,
-			Prioridade prioridade, Tecnico tecnico) {
+			Prioridade prioridade, Tecnico tecnico, Equipamento equipamento) {
 		this.id = id;
 		this.descricaoProblema = descricaoProblema;
 		this.descricaoSolucao = descricaoSolucao;
@@ -64,6 +58,7 @@ public class OrdemDeServico implements Serializable {
 		this.status = status;
 		this.prioridade = prioridade;
 		this.tecnico = tecnico;
+		this.equipamento = equipamento;
 	}
 
 	public Long getId() {
@@ -122,8 +117,12 @@ public class OrdemDeServico implements Serializable {
 		this.tecnico = tecnico;
 	}
 
-	public Set<Equipamento> getEquipamentos() {
-		return equipamentos;
+	public Equipamento getEquipamento() {
+		return equipamento;
+	}
+
+	public void setEquipamento(Equipamento equipamento) {
+		this.equipamento = equipamento;
 	}
 
 	@Override
