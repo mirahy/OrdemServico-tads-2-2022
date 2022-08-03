@@ -56,7 +56,6 @@ public class SetorService {
 	@Transactional
 	public SetorDTO insert(SetorDTO dto) {
 		Setor entity = new Setor();	
-		entity.setId(dto.getId());
 		entity.setSigla(dto.getSigla());
 		entity.setNome(dto.getNome());
 		entity.setEmail(dto.getEmail());
@@ -70,7 +69,6 @@ public class SetorService {
 	public SetorDTO update(Long id, SetorDTO dto) {
 		try {
 			Setor entity = repository.getById(id);
-			entity.setId(dto.getId());
 			entity.setSigla(dto.getSigla());
 			entity.setNome(dto.getNome());
 			entity.setEmail(dto.getEmail());

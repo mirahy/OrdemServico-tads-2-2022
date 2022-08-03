@@ -22,7 +22,7 @@ import br.edu.ifms.ordem.dto.SetorDTO;
 import br.edu.ifms.ordem.services.SetorService;
 
 @RestController
-@RequestMapping(value = "\setor")
+@RequestMapping(value = "/setor")
 public class SetorResource {
 	
 	@Autowired
