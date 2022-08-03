@@ -3,6 +3,7 @@ package br.edu.ifms.ordem.dto;
 import java.io.Serializable;
 
 import br.edu.ifms.ordem.entities.Equipamento;
+import br.edu.ifms.ordem.entities.Setor;
 
 public class EquipamentoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -10,13 +11,13 @@ public class EquipamentoDTO implements Serializable {
 	private Long id;
 	private String equipamento;
 	private String patrimonio;
-	private String setor;
+	private Setor setor;
 
 	public EquipamentoDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public EquipamentoDTO(Long id, String equipamento, String patrimonio, String setor) {
+	public EquipamentoDTO(Long id, String equipamento, String patrimonio, Setor setor) {
 		this.id = id;
 		this.equipamento = equipamento;
 		this.patrimonio = patrimonio;
@@ -54,11 +55,11 @@ public class EquipamentoDTO implements Serializable {
 		this.patrimonio = patrimonio;
 	}
 
-	public String getSetor() {
+	public Setor getSetor() {
 		return setor;
 	}
 
-	public void setSetor(String setor) {
+	public void setSetor(Setor setor) {
 		this.setor = setor;
 	}
 	

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +21,9 @@ public class Equipamento implements Serializable {
 	private Long id;
 	private String equipamento;
 	private String patrimonio;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_setor_fk")
 	private Setor setor;
 	
 	public Equipamento() {
