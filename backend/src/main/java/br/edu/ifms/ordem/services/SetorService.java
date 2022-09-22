@@ -29,13 +29,6 @@ public class SetorService {
 	@Transactional(readOnly = true)
 	public List<SetorDTO> findAll(){
 		List<Setor> list = repository.findAll();
-//		List<SetorDTO> listDto = new ArrayList<>();
-		
-//		for(Setor t : list) {
-//			listDto.add(new TecnicoDTO(t));
-//		}
-		
-//		return listDto;
 		return list.stream().map(t -> new SetorDTO(t)).collect(Collectors.toList());
 	}
 	
@@ -55,11 +48,11 @@ public class SetorService {
 
 	@Transactional
 	public SetorDTO insert(SetorDTO dto) {
-		Setor entity = new Setor();	
+		Setor entity = new Setor();
 		entity.setSigla(dto.getSigla());
 		entity.setNome(dto.getNome());
 		entity.setEmail(dto.getEmail());
-		entity.setTelefone(dto.getTelefone());
+		entity.setTelefone(dto.getTelefone());		
 		entity.setCoordenador(dto.getCoordenador());
 		entity = repository.save(entity);
 		return new SetorDTO(entity);
@@ -72,8 +65,9 @@ public class SetorService {
 			entity.setSigla(dto.getSigla());
 			entity.setNome(dto.getNome());
 			entity.setEmail(dto.getEmail());
-			entity.setTelefone(dto.getTelefone());
+			entity.setTelefone(dto.getTelefone());		
 			entity.setCoordenador(dto.getCoordenador());
+			entity = repository.save(entity);
 			return new SetorDTO(entity);
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("O recurso com o ID = "+id+" não foi localizado");
@@ -89,5 +83,4 @@ public class SetorService {
 			throw new DataBaseException("Não é possível excluir o registro, pois o mesmo está em uso");
 		}
 	}
-
 }

@@ -76,14 +76,3 @@ public class TecnicoResource {
 		return ResponseEntity.noContent().build();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-

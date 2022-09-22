@@ -27,7 +27,7 @@ public class Equipamento implements Serializable {
 	private Setor setor;
 	
 	public Equipamento() {
-		
+		// TODO Auto-generated constructor stub
 	}
 
 	public Equipamento(Long id, String equipamento, String patrimonio, Setor setor) {

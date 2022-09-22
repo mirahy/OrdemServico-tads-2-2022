@@ -28,6 +28,7 @@ public class Setor implements Serializable {
 	}
 
 	public Setor(Long id, String sigla, String nome, String email, String telefone, String coordenador) {
+		super();
 		this.id = id;
 		this.sigla = sigla;
 		this.nome = nome;
@@ -35,7 +36,6 @@ public class Setor implements Serializable {
 		this.telefone = telefone;
 		this.coordenador = coordenador;
 	}
-	
 
 	public Long getId() {
 		return id;
@@ -101,7 +101,5 @@ public class Setor implements Serializable {
 		Setor other = (Setor) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import br.edu.ifms.ordem.entities.Setor;
 
-public class SetorDTO  implements Serializable{
+public class SetorDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
@@ -15,10 +15,11 @@ public class SetorDTO  implements Serializable{
 	private String coordenador;
 	
 	public SetorDTO() {
-		
+		// TODO Auto-generated constructor stub
 	}
 
 	public SetorDTO(Long id, String sigla, String nome, String email, String telefone, String coordenador) {
+		super();
 		this.id = id;
 		this.sigla = sigla;
 		this.nome = nome;
@@ -26,16 +27,14 @@ public class SetorDTO  implements Serializable{
 		this.telefone = telefone;
 		this.coordenador = coordenador;
 	}
-
-	public SetorDTO(Setor setor) {
-		
-		this.id = setor.getId();
-		this.sigla = setor.getSigla();
-		this.nome = setor.getNome();
-		this.email = setor.getEmail();
-		this.telefone = setor.getTelefone();
-		this.coordenador = setor.getCoordenador();
-
+	
+	public SetorDTO(Setor entity) {
+		this.id = entity.getId();
+		this.sigla = entity.getSigla();
+		this.nome = entity.getNome();
+		this.email = entity.getEmail();
+		this.telefone = entity.getTelefone();
+		this.coordenador = entity.getCoordenador();
 	}
 
 	public Long getId() {
@@ -85,10 +84,4 @@ public class SetorDTO  implements Serializable{
 	public void setCoordenador(String coordenador) {
 		this.coordenador = coordenador;
 	}
-	
-	
-	
-	
-	
-
 }

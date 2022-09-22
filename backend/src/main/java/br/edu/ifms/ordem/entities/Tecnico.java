@@ -22,7 +22,6 @@ public class Tecnico implements Serializable {
 	private String email;
 	private String senha;
 	
-	
 	public Tecnico() {
 		
 	}
@@ -74,7 +73,6 @@ public class Tecnico implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
 
 	@Override
 	public int hashCode() {

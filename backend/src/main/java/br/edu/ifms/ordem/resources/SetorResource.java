@@ -22,7 +22,7 @@ import br.edu.ifms.ordem.dto.SetorDTO;
 import br.edu.ifms.ordem.services.SetorService;
 
 @RestController
-@RequestMapping(value = "/setor")
+@RequestMapping(value = "/setores")
 public class SetorResource {
 	
 	@Autowired
@@ -75,5 +75,4 @@ public class SetorResource {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
-
 }

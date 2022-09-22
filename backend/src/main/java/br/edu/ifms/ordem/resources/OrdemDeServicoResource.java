@@ -73,14 +73,3 @@ public class OrdemDeServicoResource {
 		return ResponseEntity.noContent().build();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
