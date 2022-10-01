@@ -85,8 +85,26 @@ public class TecnicoRepositoryTests {
 	 */
 	@Test
 	public void findByIdDeveriaRetronarOptionalTecnicoNaoVazioQuandoIdExistir() {
-
-		Assertions.assertNotNull(repository.findById(1L));
+		
+		//Assert
+		Optional<Tecnico> resultado;
+		resultado = repository.findById(1L);
+		Assertions.assertNotNull(resultado.isPresent());
+	
+	}
+	
+	/**
+	 * findById 
+	 * deveria RETRONAR um OPTIONAL<Tecnico> [VAZIO quando o ID NÃO EXISTIR]
+	 * findByIdDeveriaRetronarOptionalTecnicoVazioQuandoIdNaoExistir
+	 */
+	@Test
+	public void findByIdDeveriaRetronarOptionalTecnicoVazioQuandoIdNaoExistir() {
+		
+		//Assert
+		Optional<Tecnico> resultado;
+		resultado = repository.findById(20L);
+		Assertions.assertFalse(resultado.isPresent());
 	
 	}
 	
